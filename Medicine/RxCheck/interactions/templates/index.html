@@ -1,0 +1,63 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>RxCheck Home</h1>
+  <p>
+    Welcome to RxCheck, a website developed by
+    <em>Aidan Stambaugh</em>!
+  </p>
+  <h2>Search Interactions Here</h2>
+  <div class="search-container">
+    <input type="text" class="search-bar" id="searchInput" placeholder="Enter drug name...">
+    <button class="search-button" onclick="searchDrug()">Search</button>
+  </div>
+  <div id="resultContainer"></div>
+
+  <style>
+    .search-container {
+      display: flex;
+      justify-content: left;
+      margin-top: 50px;
+    }
+
+    .search-bar {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 350px;
+    }
+
+    .search-button {
+      padding: 10px 20px;
+      background-color: #97C1A9;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+
+  <!-- Include jQuery from CDN -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <script>
+    function searchDrug() {
+        var drugName = document.getElementById("searchInput").value;
+
+        // Send the drugName to the Django backend using AJAX (Assuming you are using jQuery for simplicity)
+        $.ajax({
+            url: '/search_drug/',  // Django URL endpoint to handle the search request
+            type: 'POST',
+            data: { 'drug_name': drugName },
+            success: function(response) {
+                // Handle the response and update the result container
+                document.getElementById("resultContainer").innerHTML = response;
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    }
+  </script>
+
+{% endblock %}
