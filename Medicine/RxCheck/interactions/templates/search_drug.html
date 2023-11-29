@@ -1,0 +1,55 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drug Search</title>
+    <!-- Include jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+
+    <h1>Welcome to RxCheck!</h1>
+
+    <form action="{% url 'search_drug/' %}" id="searchForm" method="post">
+        {% csrf_token %}
+        <label for="drugName">Enter Drug Name:</label>
+        <input type="text" id="drugName" name="drugName" required>
+        <button type="submit" onclick="searchDrug()">Search</button>
+        {% csrf_token %}
+    </form>
+
+    <div id="result">
+        <!-- Display search results here -->
+    </div>
+
+    <script>
+        function searchDrug() {
+            const drugName = document.getElementById('drugName').value;
+
+            // Make an AJAX request to your search_drug view
+            $.ajax({
+                type: 'POST',
+                url: '{% url "search_drug/" %}',
+                data: {
+                    'csrfmiddlewaretoken': '{{ csrf_token }}',
+                    'drug_name': drugName,
+                },
+                success: function(data) {
+                    // Display the result in the 'result' div
+                    if (data.interactions) {
+                        document.getElementById('result').innerHTML = "Interactions: " + data.interactions.join(', ');
+                    } else {
+                        document.getElementById('result').innerHTML = "No interactions found.";
+                    }
+                },
+                error: function() {
+                    console.log('Error in AJAX request');
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
