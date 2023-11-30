@@ -1,4 +1,4 @@
-<!-- appname/templates/search_results.html -->
+<!-- search_results.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +10,11 @@
 
     <h1>Search Results for {{ drug_name }}</h1>
 
-    <p>Interactions: {{ interactions|join:", " }}</p>
+    {% if interactions %}
+        <p>Interactions: {{ interactions|join:", " }}</p>
+    {% else %}
+        <p>No interactions found.</p>
+    {% endif %}
 
 </body>
 </html>
