@@ -10,7 +10,8 @@
 
     <h1>Search Results for {{ drug_name }}</h1>
 
-    {% if interactions %}
+    {% if interactions or info %}
+        <p>Drug Information: {{ info }}</p>
         <p>Interactions: {{ interactions|join:", " }}</p>
     {% else %}
         <p>No interactions found.</p>

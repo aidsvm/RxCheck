@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Drug, Drug_History
 from django.http import JsonResponse
-from .utils import get_drug_interactions
+from .utils import get_drug_interactions, get_drug_info
 from .forms import DrugSearchForm
 
 
@@ -11,10 +11,11 @@ def search_drug(request):
         if form.is_valid():
             drug_name = form.cleaned_data['drug_name']
             drug_interactions = get_drug_interactions(drug_name)
-            return render(request, 'search_results.html', {'drug_name': drug_name, 'interactions': drug_interactions})
+            drug_info = get_drug_info(drug_name)
+            return render(request, 'search_results.html', {'drug_name': drug_name,
+                                                           'info': drug_info, 'interactions': drug_interactions})
     else:
         form = DrugSearchForm()
-
     return render(request, 'search_drug.html', {'form': form})
 
 
