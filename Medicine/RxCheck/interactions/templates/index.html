@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactions Home</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'Medicine/RxCheck/interactions/static/css/styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 </head>
 <body>
     <h1>Welcome to RxCheck!</h1>
@@ -27,7 +27,9 @@
     </ul>
 
     {% block content %}
-      <!-- default content text (typically empty) -->
+      <p>RxCheck is a drug interaction interface that helps you check for potential interactions between different medications.
+         Whether you are a healthcare professional or an individual managing your own medications, RxCheck provides valuable
+         information to ensure the safety of drug combinations.</p>
     {% endblock %}
 
 </body>

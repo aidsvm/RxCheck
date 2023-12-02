@@ -1,9 +1,15 @@
 <!-- search_results.html -->
+{% extends "index.html" %}
+{% load static %}
+
+{% block content %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/results.css' %}">
     <title>Search Results</title>
 </head>
 <body>
@@ -11,11 +17,19 @@
     <h1>Search Results for {{ drug_name }}</h1>
 
     {% if interactions or info %}
-        <p>Drug Information: {{ info }}</p>
-        <p>Interactions: {{ interactions|join:", " }}</p>
+        <div class="drug-info">
+            <h2>Drug Information</h2>
+            <p>{{ info }}</p>
+        </div>
+
+        <div class="interactions">
+            <h2>Interactions</h2>
+            <p>{{ interactions|join:", " }}</p>
+        </div>
     {% else %}
         <p>No interactions found.</p>
     {% endif %}
-
 </body>
 </html>
+
+{% endblock %}

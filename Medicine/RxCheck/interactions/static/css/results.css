@@ -13,6 +13,12 @@ h1 {
     text-align: center;
 }
 
+h2 {
+    color: black;
+    text-align: center;
+}
+
+
 ul {
     list-style-type: none;
     margin: 0;
@@ -35,9 +41,11 @@ a {
     text-decoration: none;
 }
 
+
 a:hover {
     background-color: #555;
 }
+
 
 p {
     color: black;
@@ -45,16 +53,4 @@ p {
     padding: 20px;
     font-size: 16px;
     line-height: 1.5;
-}
-
-.label-color-username {
-    color: black;
-}
-
-.label-color-password {
-    color: black;
-}
-
-.reset_button-style {
-    color: black;
 }
