@@ -7,27 +7,113 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Drug Search</title>
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <style>
+        /* Your CSS styles go here */
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: white;
+            color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        h3 {
+            color: black;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        h4 {
+            color: black;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        /* Add styles for the search form */
+        .search-drug-section {
+            background-color: #f2f2f2;
+            padding: 20px;
+            border: 1px solid #ddd;
+            margin-top: 20px;
+        }
+
+        .search-form {
+            color: #333;
+            font-weight: bold;
+        }
+
+        .search-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .search-button:hover {
+            background-color: #45a049;
+        }
+
+        /* Add styles for the compare drugs section */
+        .compare-drugs-section {
+            background-color: #f2f2f2;
+            padding: 20px;
+            border: 1px solid #ddd;
+            margin-top: 20px;
+        }
+
+        .compare-form label {
+            color: #333;
+            font-weight: bold;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        .compare-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .compare-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+
 </head>
 <body>
+    <h3>Search for Interactions and Information here!</h3>
+    <div class="search-drug-section">
+        <form method="post" action="{% url 'search_drug' %}" class="search-form">
+            {% csrf_token %}
+            <label for="drug_name" class="form-label">Enter Drug to get Information and Interactions:</label>
+            <input type="text" id="drug_name" name="drug_name" required class="form-input">
+            <button type="submit" name="search_type" value="interactions" class="search-button">Search Drug</button>
+        </form>
+    </div>
+    <h4>Perform a comparison between two drugs to evaluate potential interactions.</h4>
+    <div class="compare-drugs-section">
+        <form method="post" action="{% url 'compare_drugs' %}" class="compare-form">
+            {% csrf_token %}
+            <label for="drug1" class="form-label">Enter Drug 1:</label>
+            <input type="text" id="drug1" name="drug1" required class="form-input">
 
-    <form method="post" action="{% url 'search_drug' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" name="search_type" value="interactions">Search Drug</button>
-    </form>
+            <label for="drug2" class="form-label">Enter Drug 2:</label>
+            <input type="text" id="drug2" name="drug2" required class="form-input">
 
-    <form method="post" action="{% url 'compare_drugs' %}">
-        {% csrf_token %}
-        <label for="drug1" class="form-label">Enter Drug 1:</label>
-        <input type="text" id="drug1" name="drug1" required>
-
-        <label for="drug2" class="form-label">Enter Drug 2:</label>
-        <input type="text" id="drug2" name="drug2" required>
-
-        <button type="submit" name="compare_type" value="compare">Compare Drugs</button>
-    </form>
+            <button type="submit" name="compare_type" value="compare" class="compare-button">Compare Drugs</button>
+        </form>
+    </div>
 
 </body>
 </html>

@@ -12,9 +12,10 @@
 </head>
 <body>
 
-    <h1>Search Results for {{ drug_name }}</h1>
+
 
     {% if interactions or info %}
+        <h1>Search Results for {{ drug_name }}</h1>
         <div class="drug-info">
             <h2>Drug Information</h2>
             <p>{{ info }}</p>
@@ -26,6 +27,7 @@
         </div>
 
     {% elif compare %}
+        <h1> Comparison Results for {{ drug1 }} and {{ drug2 }}</h1>
         <div class="Compare">
             <h2>Comparison Result</h2>
             <p>{{ compare }}</p>

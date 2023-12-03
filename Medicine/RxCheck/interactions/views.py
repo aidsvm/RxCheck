@@ -42,7 +42,7 @@ def compare_drugs(request):
         else:
             result_message = f"{drug2} does not interact with {drug1}."
 
-        return render(request, 'search_results.html', {'compare': result_message})
+        return render(request, 'search_results.html', {'compare': result_message, 'drug1': drug1, 'drug2': drug2})
 
     # If the request method is not POST, render the initial form
     return render(request, 'compare_drugs.html')
