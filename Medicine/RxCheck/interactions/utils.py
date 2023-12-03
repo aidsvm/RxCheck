@@ -49,11 +49,3 @@ def get_drug_info(drug_name):
 
     return f"Failed to retrieve drug info for {drug_name}."
 
-
-def compare_drugs(drug1, drug2):
-    drug1_interactions = set(get_drug_interactions(drug1))
-
-    if drug2 in drug1_interactions:
-        return f"{drug2} interacts with {drug1}."
-    else:
-        return f"{drug2} does not interact with {drug1}."

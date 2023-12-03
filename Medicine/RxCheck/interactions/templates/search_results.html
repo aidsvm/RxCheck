@@ -1,9 +1,7 @@
-<!-- search_results.html -->
 {% extends "index.html" %}
 {% load static %}
 
 {% block content %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,6 +23,12 @@
         <div class="interactions">
             <h2>Interactions</h2>
             <p>{{ interactions|join:", " }}</p>
+        </div>
+
+    {% elif compare %}
+        <div class="Compare">
+            <h2>Comparison Result</h2>
+            <p>{{ compare }}</p>
         </div>
     {% else %}
         <p>No interactions found.</p>

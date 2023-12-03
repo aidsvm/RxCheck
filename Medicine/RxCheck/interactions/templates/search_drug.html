@@ -7,6 +7,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Drug Search</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 </head>
 <body>
 
@@ -16,6 +18,16 @@
         <button type="submit" name="search_type" value="interactions">Search Drug</button>
     </form>
 
+    <form method="post" action="{% url 'compare_drugs' %}">
+        {% csrf_token %}
+        <label for="drug1" class="form-label">Enter Drug 1:</label>
+        <input type="text" id="drug1" name="drug1" required>
+
+        <label for="drug2" class="form-label">Enter Drug 2:</label>
+        <input type="text" id="drug2" name="drug2" required>
+
+        <button type="submit" name="compare_type" value="compare">Compare Drugs</button>
+    </form>
 
 </body>
 </html>
