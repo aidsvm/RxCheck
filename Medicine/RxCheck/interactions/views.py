@@ -38,6 +38,7 @@ def compare_drugs(request):
         drug1_interactions = set(get_drug_interactions(drug1))
 
         if drug1_interactions.intersection([drug2]):
+
             result_message = f"{drug2} interacts with {drug1}."
         else:
             result_message = f"{drug2} does not interact with {drug1}."
@@ -49,7 +50,6 @@ def compare_drugs(request):
 
 
 def login_page(request):
-    # Your logic for the login page
     return render(request, 'login_page.html')
 
 
@@ -57,7 +57,7 @@ def index(request):
     """View function for home page of site."""
 
     # Generate counts of some of the main objects
-    num_drugs = Drug.objects.all().count()
+    num_drugs = Drug.objects.all().count() 
     num_history = Drug_History.objects.all().count()
 
     context = {
