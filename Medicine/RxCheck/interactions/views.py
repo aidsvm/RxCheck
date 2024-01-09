@@ -32,18 +32,20 @@ def compare_drugs(request):
         drug1 = request.POST.get('drug1', '')
         drug2 = request.POST.get('drug2', '')
 
-        if not drug1 and not drug2:
+        if not drug1 or not drug2:
             return render(request, 'error.html', {'error_message':
                                                       'Please provide valid drug names.'})
-        drug1_interactions = set(get_drug_interactions(drug1))
 
-        if drug1_interactions.intersection([drug2]):
-
-            result_message = f"{drug2} interacts with {drug1}."
         else:
-            result_message = f"{drug2} does not interact with {drug1}."
+            drug1_interactions = set(get_drug_interactions(drug1))
 
-        return render(request, 'search_results.html', {'compare': result_message, 'drug1': drug1, 'drug2': drug2})
+            if drug1_interactions.intersection([drug2]):
+
+                result_message = f"{drug2} interacts with {drug1}."
+            else:
+                result_message = f"{drug2} does not interact with {drug1}."
+
+            return render(request, 'search_results.html', {'compare': result_message, 'drug1': drug1, 'drug2': drug2})
 
     # If the request method is not POST, render the initial form
     return render(request, 'compare_drugs.html')
